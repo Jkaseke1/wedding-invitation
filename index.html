@@ -35,15 +35,12 @@
 
     .bg {
       position: fixed; inset: 0; z-index: 0;
-      background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 40%, #d6eaf8 100%);
-      display: flex; align-items: center; justify-content: center;
     }
     .bg img {
-      height: 100%;
-      width: auto;
-      max-width: none;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
       display: block;
-      object-fit: contain;
     }
     /* Subtle overlay for text readability */
     .bg::after {
@@ -51,9 +48,9 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.08) 0%,
-        rgba(0,0,0,0.04) 40%,
-        rgba(0,0,0,0.12) 100%
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.08) 40%,
+        rgba(0,0,0,0.20) 100%
       );
     }
 
@@ -71,12 +68,12 @@
       overflow-y: auto;
       text-align: center;
       padding: 28px 32px 24px;
-      background: rgba(255,255,255,0.25);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      border: 1.5px solid rgba(255,255,255,0.7);
+      background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(214,234,248,0.92) 100%);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border: 2px solid rgba(174,214,241,0.8);
       border-radius: 4px;
-      box-shadow: 0 8px 40px rgba(10,50,120,0.2);
+      box-shadow: 0 8px 40px rgba(10,50,120,0.3);
       animation: fadeIn 1.2s ease both;
     }
     @keyframes fadeIn {
@@ -87,7 +84,7 @@
     /* ── TOP LABEL ── */
     .top-label {
       font-size: 8px; letter-spacing: 5px; text-transform: uppercase;
-      font-weight: 600; color: #0a3060;
+      font-weight: 600; color: #1a5fb4;
       margin-bottom: 6px;
     }
 
@@ -106,11 +103,11 @@
     }
     .div-line {
       flex: 1; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(214,234,248,0.6), transparent);
+      background: linear-gradient(90deg, transparent, rgba(26,95,180,0.4), transparent);
     }
     .div-diamond {
       width: 6px; height: 6px;
-      background: var(--baby); transform: rotate(45deg);
+      background: #85c1e9; transform: rotate(45deg);
     }
 
     /* ── NAMES ── */
@@ -118,23 +115,21 @@
     .name1 {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(44px, 11vw, 68px);
-      color: #0a2a5e;
-      text-shadow: 0 1px 8px rgba(255,255,255,0.6);
+      color: #0c2d6b;
       line-height: 1;
       display: block;
     }
     .amp-wrap {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(18px, 4vw, 24px);
-      color: #1a5fb4;
+      color: #85c1e9;
       display: block;
       margin: 2px 0;
     }
     .name2 {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(44px, 11vw, 68px);
-      color: #0a2a5e;
-      text-shadow: 0 1px 8px rgba(255,255,255,0.6);
+      color: #0c2d6b;
       line-height: 1;
       display: block;
     }
@@ -151,7 +146,7 @@
     .date-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(38px, 9vw, 52px); font-weight: 300;
-      color: #0a2a5e; line-height: 1;
+      color: #0c2d6b; line-height: 1;
     }
     .date-month {
       font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
@@ -168,7 +163,7 @@
     .venue-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(19px, 4.5vw, 26px); font-weight: 600;
-      color: #0a2a5e;
+      color: #0c2d6b;
     }
     .venue-addr {
       font-family: 'Cormorant Garamond', serif;
@@ -185,13 +180,13 @@
     .notices {
       margin: 10px 0 8px;
       padding: 10px 14px;
-      border: 1px solid rgba(26,95,180,0.3);
+      border: 1px solid rgba(26,95,180,0.4);
       border-radius: 3px;
-      background: rgba(214,234,248,0.35);
+      background: rgba(174,214,241,0.25);
     }
     .notice-item {
       font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 600; color: #0a2a5e;
+      font-weight: 600; color: #0c2d6b;
       padding: 3px 0;
     }
     .notice-item + .notice-item {
