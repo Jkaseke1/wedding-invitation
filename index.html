@@ -35,22 +35,25 @@
 
     .bg {
       position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 40%, #d6eaf8 100%);
+      display: flex; align-items: center; justify-content: center;
     }
     .bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center center;
+      height: 100%;
+      width: auto;
+      max-width: none;
       display: block;
+      object-fit: contain;
     }
-    /* Subtle dark gradient overlay so text is readable */
+    /* Subtle overlay for text readability */
     .bg::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.22) 0%,
-        rgba(0,0,0,0.10) 40%,
-        rgba(0,0,0,0.28) 100%
+        rgba(0,0,0,0.08) 0%,
+        rgba(0,0,0,0.04) 40%,
+        rgba(0,0,0,0.12) 100%
       );
     }
 
@@ -63,17 +66,17 @@
 
     /* ── INVITATION CARD ── */
     .card {
-      width: min(94vw, 420px);
+      width: min(94vw, 400px);
       max-height: 96vh;
       overflow-y: auto;
       text-align: center;
       padding: 28px 32px 24px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      border: 1.5px solid rgba(255,255,255,0.7);
       border-radius: 4px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 40px rgba(10,50,120,0.2);
       animation: fadeIn 1.2s ease both;
     }
     @keyframes fadeIn {
@@ -84,7 +87,7 @@
     /* ── TOP LABEL ── */
     .top-label {
       font-size: 8px; letter-spacing: 5px; text-transform: uppercase;
-      font-weight: 500; color: var(--baby);
+      font-weight: 600; color: #0a3060;
       margin-bottom: 6px;
     }
 
@@ -92,7 +95,7 @@
     .invite-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 13px; font-style: italic; font-weight: 300;
-      color: var(--soft); line-height: 1.7;
+      color: #0a3060; line-height: 1.7;
       margin-bottom: 12px;
     }
 
@@ -115,23 +118,23 @@
     .name1 {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(44px, 11vw, 68px);
-      color: #ffffff;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+      color: #0a2a5e;
+      text-shadow: 0 1px 8px rgba(255,255,255,0.6);
       line-height: 1;
       display: block;
     }
     .amp-wrap {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(18px, 4vw, 24px);
-      color: var(--babymd);
+      color: #1a5fb4;
       display: block;
       margin: 2px 0;
     }
     .name2 {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(44px, 11vw, 68px);
-      color: #ffffff;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.45);
+      color: #0a2a5e;
+      text-shadow: 0 1px 8px rgba(255,255,255,0.6);
       line-height: 1;
       display: block;
     }
@@ -143,54 +146,52 @@
     }
     .date-day-label {
       font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
-      font-weight: 600; color: var(--baby);
+      font-weight: 600; color: #1a5fb4;
     }
     .date-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(38px, 9vw, 52px); font-weight: 300;
-      color: #ffffff; line-height: 1;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      color: #0a2a5e; line-height: 1;
     }
     .date-month {
       font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
-      font-weight: 600; color: var(--baby);
+      font-weight: 600; color: #1a5fb4;
     }
-    .date-sep { width: 1px; height: 36px; background: rgba(214,234,248,0.4); }
+    .date-sep { width: 1px; height: 36px; background: rgba(26,95,180,0.3); }
 
     /* ── VENUE ── */
     .venue-section { margin: 10px 0 8px; }
     .venue-label {
       font-size: 7px; letter-spacing: 5px; text-transform: uppercase;
-      font-weight: 600; color: var(--babymd); margin-bottom: 4px;
+      font-weight: 600; color: #1a5fb4; margin-bottom: 4px;
     }
     .venue-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(19px, 4.5vw, 26px); font-weight: 600;
-      color: #ffffff;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      color: #0a2a5e;
     }
     .venue-addr {
       font-family: 'Cormorant Garamond', serif;
       font-size: 13px; font-style: italic;
-      color: var(--soft); margin-top: 2px;
+      color: #2a4d7a; margin-top: 2px;
     }
     .venue-detail {
       font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--soft); margin-top: 6px; line-height: 2;
+      color: #2a4d7a; margin-top: 6px; line-height: 2;
     }
-    .venue-detail em { font-style: normal; color: var(--baby); font-weight: 600; }
+    .venue-detail em { font-style: normal; color: #1a5fb4; font-weight: 600; }
 
     /* ── NOTICES ── */
     .notices {
       margin: 10px 0 8px;
       padding: 10px 14px;
-      border: 1px solid rgba(174,214,241,0.4);
+      border: 1px solid rgba(26,95,180,0.3);
       border-radius: 3px;
-      background: rgba(0,0,0,0.15);
+      background: rgba(214,234,248,0.35);
     }
     .notice-item {
       font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 600; color: rgba(255,255,255,0.9);
+      font-weight: 600; color: #0a2a5e;
       padding: 3px 0;
     }
     .notice-item + .notice-item {
@@ -201,24 +202,24 @@
     /* ── RSVP BTN ── */
     .rsvp-note {
       font-size: 7px; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--soft); margin-bottom: 10px; margin-top: 12px;
+      color: #2a4d7a; margin-bottom: 10px; margin-top: 12px;
     }
     .rsvp-btn {
       display: inline-block;
-      background: rgba(255,255,255,0.92);
-      color: #0a3060;
+      background: linear-gradient(135deg, #0c2d6b, #1a5fb4);
+      color: #ffffff;
       font-size: 8px; letter-spacing: 5px;
       text-transform: uppercase; font-weight: 700;
       padding: 12px 36px; border-radius: 2px;
       border: none; cursor: pointer;
       font-family: 'Montserrat', sans-serif;
       transition: all .3s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 20px rgba(10,44,107,0.35);
     }
     .rsvp-btn:hover {
-      background: var(--baby);
+      background: linear-gradient(135deg, #1a5fb4, #85c1e9);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 28px rgba(10,44,107,0.4);
     }
 
     /* ── VERSE FOOTER ── */
@@ -229,11 +230,11 @@
     .verse-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 11px; font-style: italic;
-      color: var(--soft); line-height: 1.7;
+      color: #2a4d7a; line-height: 1.7;
     }
     .verse-ref {
       font-size: 7px; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--babymd); margin-top: 4px;
+      color: #1a5fb4; margin-top: 4px;
     }
 
     /* ── MODAL ── */
