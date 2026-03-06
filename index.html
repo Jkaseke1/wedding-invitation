@@ -461,6 +461,13 @@
 
   async function submitRSVP(e) {
     e.preventDefault();
+    
+    // Check if already submitted
+    if (localStorage.getItem('rsvp_submitted') === 'true') {
+      alert('You have already submitted your RSVP. Thank you!');
+      return;
+    }
+    
     const attLabels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
     const attendance = attLabels[attVal] || attVal;
     document.getElementById('hidden-att').value = attendance;
@@ -486,6 +493,11 @@
       }).catch(() => {});
 
       if (formspreeResp.ok) {
+        // Mark as submitted in localStorage
+        localStorage.setItem('rsvp_submitted', 'true');
+        localStorage.setItem('rsvp_name', name);
+        localStorage.setItem('rsvp_attendance', attendance);
+        
         form.style.display = 'none';
         document.getElementById('success').style.display = 'block';
         setTimeout(closeModal, 3400);
