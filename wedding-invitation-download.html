@@ -13,11 +13,32 @@
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 50%, #85c1e9 100%);
       min-height: 100vh;
-      padding: 20px;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+    }
+    .bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .bg::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.08) 40%, rgba(0,0,0,0.20) 100%);
     }
     .wrap {
       max-width: 420px;
       margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
     }
     .card {
       background: linear-gradient(to bottom, rgba(255,255,255,0.88), rgba(214,234,248,0.82));
@@ -125,6 +146,11 @@
       border-radius: 4px;
       box-shadow: 0 8px 40px rgba(10,50,120,0.25);
       overflow: hidden;
+      scroll-margin-top: 0;
+    }
+    .rsvp-section:target {
+      position: relative;
+      z-index: 100;
     }
     .rsvp-head {
       background: linear-gradient(135deg, #0c2d6b, #1a5fb4, #85c1e9);
@@ -189,6 +215,11 @@
   </style>
 </head>
 <body>
+<!-- Background Photo -->
+<div class="bg">
+  <img src="couple.jpg" alt="Joseph and Nyasha" loading="eager"/>
+</div>
+
 <div class="wrap">
 
   <!-- Invitation Card -->
@@ -220,7 +251,7 @@
       <div class="notice-item">Strictly By Invitation</div>
     </div>
     <div class="rsvp-note">Kindly confirm your attendance</div>
-    <a href="#rsvp-section" class="rsvp-btn" style="text-decoration:none; display:block;">RSVP Now</a>
+    <a href="#rsvp-section" class="rsvp-btn" id="rsvp-link" style="text-decoration:none; display:block;">RSVP Now</a>
     <div class="verse-footer">
       <div class="verse-text">"...I found him whom my soul loveth:<br/>I held him, and would not let him go..."</div>
       <div class="verse-ref">Song of Solomon 3:4 &nbsp;&middot;&nbsp; KJV</div>
@@ -265,6 +296,25 @@
 
   // Attach event listeners when page loads
   window.addEventListener('load', function() {
+    // RSVP link - scroll to full view
+    var rsvpLink = document.getElementById('rsvp-link');
+    if (rsvpLink) {
+      rsvpLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        var rsvpSection = document.getElementById('rsvp-section');
+        if (rsvpSection) {
+          setTimeout(function() {
+            rsvpSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // On mobile, scroll to top of RSVP section
+            window.scrollTo({
+              top: rsvpSection.offsetTop,
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
+      });
+    }
+
     // Send button
     var sendBtn = document.getElementById('send-btn');
     if (sendBtn) {
