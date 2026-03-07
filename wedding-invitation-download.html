@@ -119,14 +119,13 @@
 
     /* ── RSVP FORM (inline, no modal) ── */
     .rsvp-section {
-      display: none;
+      display: block;
       background: #f0f7ff;
       border: 2px solid rgba(174,214,241,0.6);
       border-radius: 4px;
       box-shadow: 0 8px 40px rgba(10,50,120,0.25);
       overflow: hidden;
     }
-    .rsvp-section.show { display: block; }
     .rsvp-head {
       background: linear-gradient(135deg, #0c2d6b, #1a5fb4, #85c1e9);
       padding: 20px 24px; text-align: center;
@@ -221,7 +220,7 @@
       <div class="notice-item">Strictly By Invitation</div>
     </div>
     <div class="rsvp-note">Kindly confirm your attendance</div>
-    <button class="rsvp-btn" onclick="showRSVP()">RSVP Now</button>
+    <a href="#rsvp-section" class="rsvp-btn" style="text-decoration:none; display:block;">RSVP Now</a>
     <div class="verse-footer">
       <div class="verse-text">"...I found him whom my soul loveth:<br/>I held him, and would not let him go..."</div>
       <div class="verse-ref">Song of Solomon 3:4 &nbsp;&middot;&nbsp; KJV</div>
