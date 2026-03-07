@@ -265,12 +265,23 @@
   var att = 'yes';
 
   function showRSVP() {
-    if (localStorage.getItem('rsvp_done') === '1') {
-      alert('You have already submitted your RSVP. Thank you!');
-      return;
+    try {
+      if (localStorage.getItem('rsvp_done') === '1') {
+        alert('You have already submitted your RSVP. Thank you!');
+        return;
+      }
+      var section = document.getElementById('rsvp-section');
+      if (section) {
+        section.className = 'rsvp-section show';
+        setTimeout(function() {
+          section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else {
+        alert('Error: RSVP section not found');
+      }
+    } catch(e) {
+      alert('Error opening RSVP: ' + e.message);
     }
-    document.getElementById('rsvp-section').className = 'rsvp-section show';
-    document.getElementById('rsvp-section').scrollIntoView({ behavior: 'smooth' });
   }
 
   function hideRSVP() {
