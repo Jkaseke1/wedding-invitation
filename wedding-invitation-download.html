@@ -319,7 +319,7 @@
     </div>
 
     <div class="rsvp-note">Kindly confirm your attendance</div>
-    <button class="rsvp-btn" onclick="openModal()">RSVP Now</button>
+    <button class="rsvp-btn" id="rsvp-open-btn">RSVP Now</button>
 
     <div class="verse-footer">
       <div class="verse-text">"...I found him whom my soul loveth:<br/>I held him, and would not let him go..."</div>
@@ -393,6 +393,16 @@
   
   // Wait for DOM to be ready
   document.addEventListener('DOMContentLoaded', function() {
+    // Add RSVP button click listener
+    const rsvpBtn = document.getElementById('rsvp-open-btn');
+    if (rsvpBtn) {
+      rsvpBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal();
+      });
+    }
+    
+    // Add modal background click listener
     const modal = document.getElementById('modal');
     if (modal) {
       modal.addEventListener('click', e => {
