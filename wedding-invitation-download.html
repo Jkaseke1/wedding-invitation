@@ -368,19 +368,37 @@
   let attVal = 'yes';
 
   function openModal() {
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('modal');
+    if (modal) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
+  
   function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-    document.getElementById('success').style.display = 'none';
-    document.getElementById('rsvp-form').style.display = 'block';
-    document.getElementById('rsvp-form').reset();
+    const modal = document.getElementById('modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    const success = document.getElementById('success');
+    const form = document.getElementById('rsvp-form');
+    if (success) success.style.display = 'none';
+    if (form) {
+      form.style.display = 'block';
+      form.reset();
+    }
     selectAtt('yes');
   }
-  document.getElementById('modal').addEventListener('click', e => {
-    if (e.target === document.getElementById('modal')) closeModal();
+  
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
+      });
+    }
   });
 
   function selectAtt(val) {
