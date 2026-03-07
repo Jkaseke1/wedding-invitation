@@ -41,10 +41,12 @@
       z-index: 1;
     }
     .card {
-      background: linear-gradient(to bottom, rgba(255,255,255,0.88), rgba(214,234,248,0.82));
-      border: 2px solid rgba(174,214,241,0.6);
+      background: linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(214,234,248,0.40));
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border: 2px solid rgba(255,255,255,0.55);
       border-radius: 4px;
-      box-shadow: 0 8px 40px rgba(10,50,120,0.25);
+      box-shadow: 0 8px 40px rgba(10,50,120,0.35);
       padding: 28px 24px 24px;
       text-align: center;
       margin-bottom: 16px;
@@ -226,7 +228,7 @@
 <body>
 <!-- Background Photo -->
 <div class="bg">
-  <img src="couple.jpg" alt="Joseph and Nyasha" loading="eager"/>
+  <img src="https://raw.githubusercontent.com/Jkaseke1/wedding-invitation/main/couple.jpg" alt="Joseph and Nyasha" loading="eager"/>
 </div>
 
 <div class="wrap">
@@ -371,11 +373,7 @@
         headers: { 'Accept': 'application/json' },
         body: formData
       }).then(function(resp) {
-        return resp.json().then(function(data) {
-          return { ok: resp.ok, data: data };
-        });
-      }).then(function(result) {
-        if (result.ok) {
+        if (resp.ok) {
           localStorage.setItem('rsvp_done', '1');
           fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
             method: 'POST',
@@ -383,7 +381,6 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: name, attendance: attendance })
           }).catch(function(){});
-          
           var formWrap = document.getElementById('form-wrap');
           var successMsg = document.getElementById('success-msg');
           if (formWrap) formWrap.style.display = 'none';
@@ -395,12 +392,12 @@
           }
           alert('Something went wrong. Please try again.');
         }
-      }).catch(function(err) {
+      }).catch(function() {
         if (btn) {
           btn.textContent = 'Send RSVP';
           btn.disabled = false;
         }
-        alert('Network error: ' + err.message + '. Please check your connection.');
+        alert('Network error. Please check your connection.');
       });
     } catch(e) {
       alert('Error: ' + e.message);
