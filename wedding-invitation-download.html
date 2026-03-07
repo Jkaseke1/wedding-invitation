@@ -260,7 +260,7 @@
       <div class="notice-item">Strictly By Invitation</div>
     </div>
     <div class="rsvp-note">Kindly confirm your attendance</div>
-    <a href="#rsvp-section" class="rsvp-btn" id="rsvp-link" style="text-decoration:none; display:block;">RSVP Now</a>
+    <button class="rsvp-btn" onclick="showRSVPPage()">RSVP Now</button>
     <div class="verse-footer">
       <div class="verse-text">"...I found him whom my soul loveth:<br/>I held him, and would not let him go..."</div>
       <div class="verse-ref">Song of Solomon 3:4 &nbsp;&middot;&nbsp; KJV</div>
@@ -296,8 +296,8 @@
             <div class="att-opt"       id="opt-no"    onclick="pick('no')">&#10007; Regretfully<br/>Declines</div>
           </div>
         </div>
-        <button class="send-btn" id="send-btn">Send RSVP</button>
-        <button class="cancel-btn" id="cancel-btn">Cancel</button>
+        <button class="send-btn" onclick="sendRSVP()">Send RSVP</button>
+        <button class="cancel-btn" onclick="hideRSVP()">Cancel</button>
       </div>
     </div>
   </div>
@@ -306,50 +306,13 @@
 <script>
   var att = 'yes';
 
-  // Attach event listeners when page loads
-  window.addEventListener('load', function() {
-    // RSVP link - show full page RSVP
-    var rsvpLink = document.getElementById('rsvp-link');
-    if (rsvpLink) {
-      rsvpLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        var rsvpSection = document.getElementById('rsvp-section');
-        if (rsvpSection) {
-          rsvpSection.className = 'rsvp-section show';
-          window.scrollTo(0, 0);
-        }
-      });
+  function showRSVPPage() {
+    var section = document.getElementById('rsvp-section');
+    if (section) {
+      section.className = 'rsvp-section show';
+      window.scrollTo(0, 0);
     }
-
-    // Send button
-    var sendBtn = document.getElementById('send-btn');
-    if (sendBtn) {
-      sendBtn.addEventListener('click', function() {
-        sendRSVP();
-      });
-      sendBtn.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        sendRSVP();
-      });
-    }
-
-    // Cancel button
-    var cancelBtn = document.getElementById('cancel-btn');
-    if (cancelBtn) {
-      cancelBtn.addEventListener('click', function() {
-        hideRSVP();
-      });
-    }
-
-    // Attendance options
-    var optYes = document.getElementById('opt-yes');
-    var optMaybe = document.getElementById('opt-maybe');
-    var optNo = document.getElementById('opt-no');
-    
-    if (optYes) optYes.addEventListener('click', function() { pick('yes'); });
-    if (optMaybe) optMaybe.addEventListener('click', function() { pick('maybe'); });
-    if (optNo) optNo.addEventListener('click', function() { pick('no'); });
-  });
+  }
 
   function hideRSVP() {
     var section = document.getElementById('rsvp-section');
@@ -392,7 +355,7 @@
       var labels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
       var attendance = labels[att];
 
-      var btn = document.getElementById('send-btn');
+      var btn = document.querySelector('.send-btn');
       if (btn) {
         btn.textContent = 'Sending...';
         btn.disabled = true;
