@@ -252,8 +252,8 @@
             <div class="att-opt"       id="opt-no"    onclick="pick('no')">&#10007; Regretfully<br/>Declines</div>
           </div>
         </div>
-        <button class="send-btn" onclick="sendRSVP()">Send RSVP</button>
-        <button class="cancel-btn" onclick="hideRSVP()">Cancel</button>
+        <button class="send-btn" id="send-btn">Send RSVP</button>
+        <button class="cancel-btn" id="cancel-btn">Cancel</button>
       </div>
     </div>
   </div>
@@ -263,77 +263,126 @@
 <script>
   var att = 'yes';
 
-  function showRSVP() {
-    try {
-      if (localStorage.getItem('rsvp_done') === '1') {
-        alert('You have already submitted your RSVP. Thank you!');
-        return;
-      }
-      var section = document.getElementById('rsvp-section');
-      if (section) {
-        section.className = 'rsvp-section show';
-        setTimeout(function() {
-          section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
-      } else {
-        alert('Error: RSVP section not found');
-      }
-    } catch(e) {
-      alert('Error opening RSVP: ' + e.message);
+  // Attach event listeners when page loads
+  window.addEventListener('load', function() {
+    // Send button
+    var sendBtn = document.getElementById('send-btn');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', function() {
+        sendRSVP();
+      });
+      sendBtn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        sendRSVP();
+      });
     }
-  }
+
+    // Cancel button
+    var cancelBtn = document.getElementById('cancel-btn');
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function() {
+        hideRSVP();
+      });
+    }
+
+    // Attendance options
+    var optYes = document.getElementById('opt-yes');
+    var optMaybe = document.getElementById('opt-maybe');
+    var optNo = document.getElementById('opt-no');
+    
+    if (optYes) optYes.addEventListener('click', function() { pick('yes'); });
+    if (optMaybe) optMaybe.addEventListener('click', function() { pick('maybe'); });
+    if (optNo) optNo.addEventListener('click', function() { pick('no'); });
+  });
 
   function hideRSVP() {
-    document.getElementById('rsvp-section').className = 'rsvp-section';
+    var section = document.getElementById('rsvp-section');
+    if (section) section.style.display = 'none';
   }
 
   function pick(val) {
     att = val;
-    document.getElementById('opt-yes').className   = 'att-opt' + (val === 'yes'   ? ' s-yes'   : '');
-    document.getElementById('opt-maybe').className = 'att-opt' + (val === 'maybe' ? ' s-maybe' : '');
-    document.getElementById('opt-no').className    = 'att-opt' + (val === 'no'    ? ' s-no'    : '');
+    var optYes = document.getElementById('opt-yes');
+    var optMaybe = document.getElementById('opt-maybe');
+    var optNo = document.getElementById('opt-no');
+    
+    if (optYes) optYes.className = 'att-opt' + (val === 'yes' ? ' s-yes' : '');
+    if (optMaybe) optMaybe.className = 'att-opt' + (val === 'maybe' ? ' s-maybe' : '');
+    if (optNo) optNo.className = 'att-opt' + (val === 'no' ? ' s-no' : '');
   }
 
   function sendRSVP() {
-    var name = document.getElementById('f-name').value.trim();
-    if (!name) { alert('Please enter your full name.'); return; }
-
-    var labels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
-    var attendance = labels[att];
-
-    var btn = document.querySelector('.send-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    var formData = new FormData();
-    formData.append('name', name);
-    formData.append('attendance', attendance);
-    formData.append('_subject', 'New RSVP — Joseph & Nyasha Wedding');
-
-    fetch('https://formspree.io/f/xaqdkzjn', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: formData
-    }).then(function(resp) {
-      if (resp.ok) {
-        localStorage.setItem('rsvp_done', '1');
-        fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: name, attendance: attendance })
-        }).catch(function(){});
-        document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-      } else {
-        btn.textContent = 'Send RSVP';
-        btn.disabled = false;
-        alert('Something went wrong. Please try again.');
+    try {
+      var nameInput = document.getElementById('f-name');
+      if (!nameInput) {
+        alert('Error: Name field not found');
+        return;
       }
-    }).catch(function() {
-      btn.textContent = 'Send RSVP';
-      btn.disabled = false;
-      alert('Network error. Please check your connection and try again.');
-    });
+
+      var name = nameInput.value.trim();
+      if (!name) {
+        alert('Please enter your full name.');
+        return;
+      }
+
+      if (localStorage.getItem('rsvp_done') === '1') {
+        alert('You have already submitted your RSVP. Thank you!');
+        return;
+      }
+
+      var labels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
+      var attendance = labels[att];
+
+      var btn = document.getElementById('send-btn');
+      if (btn) {
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+      }
+
+      var formData = new FormData();
+      formData.append('name', name);
+      formData.append('attendance', attendance);
+      formData.append('_subject', 'New RSVP — Joseph & Nyasha Wedding');
+
+      fetch('https://formspree.io/f/xaqdkzjn', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      }).then(function(resp) {
+        return resp.json().then(function(data) {
+          return { ok: resp.ok, data: data };
+        });
+      }).then(function(result) {
+        if (result.ok) {
+          localStorage.setItem('rsvp_done', '1');
+          fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, attendance: attendance })
+          }).catch(function(){});
+          
+          var formWrap = document.getElementById('form-wrap');
+          var successMsg = document.getElementById('success-msg');
+          if (formWrap) formWrap.style.display = 'none';
+          if (successMsg) successMsg.style.display = 'block';
+        } else {
+          if (btn) {
+            btn.textContent = 'Send RSVP';
+            btn.disabled = false;
+          }
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function(err) {
+        if (btn) {
+          btn.textContent = 'Send RSVP';
+          btn.disabled = false;
+        }
+        alert('Network error: ' + err.message + '. Please check your connection.');
+      });
+    } catch(e) {
+      alert('Error: ' + e.message);
+    }
   }
 </script>
 </body>
