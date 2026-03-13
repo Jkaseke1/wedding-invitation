@@ -84,25 +84,23 @@
     .card::after {
       content: '';
       position: absolute;
-      width: 60px;
-      height: 60px;
-      background: radial-gradient(ellipse at top left, rgba(133,193,233,0.3) 0%, transparent 70%);
-      border-radius: 50% 0 50% 0;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #85c1e9;
     }
     .card::before {
-      top: 0;
-      left: 0;
-      background: radial-gradient(ellipse at top left, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
-      border-top: 2px solid rgba(133,193,233,0.4);
-      border-left: 2px solid rgba(133,193,233,0.4);
+      top: 16px;
+      left: 16px;
+      border-right: none;
+      border-bottom: none;
+      border-top-left-radius: 8px;
     }
     .card::after {
-      top: 0;
-      right: 0;
-      background: radial-gradient(ellipse at top right, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
-      border-top: 2px solid rgba(133,193,233,0.4);
-      border-right: 2px solid rgba(133,193,233,0.4);
-      border-radius: 0 50% 0 50%;
+      top: 16px;
+      right: 16px;
+      border-left: none;
+      border-bottom: none;
+      border-top-right-radius: 8px;
     }
 
     .top-label {
@@ -214,23 +212,22 @@
     .verse-footer::after {
       content: '';
       position: absolute;
-      width: 60px;
-      height: 60px;
-      bottom: 0;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #85c1e9;
+      bottom: 16px;
     }
     .verse-footer::before {
-      left: 0;
-      background: radial-gradient(ellipse at bottom left, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
-      border-bottom: 2px solid rgba(133,193,233,0.4);
-      border-left: 2px solid rgba(133,193,233,0.4);
-      border-radius: 0 50% 0 50%;
+      left: 16px;
+      border-right: none;
+      border-top: none;
+      border-bottom-left-radius: 8px;
     }
     .verse-footer::after {
-      right: 0;
-      background: radial-gradient(ellipse at bottom right, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
-      border-bottom: 2px solid rgba(133,193,233,0.4);
-      border-right: 2px solid rgba(133,193,233,0.4);
-      border-radius: 50% 0 50% 0;
+      right: 16px;
+      border-left: none;
+      border-top: none;
+      border-bottom-right-radius: 8px;
     }
     .verse-text {
       font-family: 'Cormorant Garamond', serif;
