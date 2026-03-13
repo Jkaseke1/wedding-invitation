@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph &amp; Nyasha — Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Screen styles ── */
+    html, body {
+      width: 100%; min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      background: #b8d4f0;
+    }
+
+    .page {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .bg-photo {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+    }
+    .bg-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .bg-photo::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.18);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 30px 20px 30px;
+    }
+
+    /* Save as PDF button - only visible on screen */
+    .pdf-btn-wrap {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .pdf-btn {
+      background: linear-gradient(135deg, #0c2d6b, #1a5fb4);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 28px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(10,44,107,0.4);
+    }
+
+    .card {
+      background: linear-gradient(to bottom, rgba(255,255,255,0.82), rgba(214,234,248,0.78));
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 6px;
+      box-shadow: 0 12px 50px rgba(10,50,120,0.4);
+      padding: 32px 28px 28px;
+      text-align: center;
+    }
+
+    .top-label {
+      font-size: 8px; letter-spacing: 6px; text-transform: uppercase;
+      font-weight: 600; color: #1a5fb4; margin-bottom: 10px;
+    }
+    .invite-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic; font-weight: 300;
+      color: #0c1f40; line-height: 1.8; margin-bottom: 10px;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 10px; margin: 10px 0;
+    }
+    .div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(26,95,180,0.4), transparent); }
+    .div-diamond { width: 6px; height: 6px; background: #85c1e9; transform: rotate(45deg); flex-shrink: 0; }
+
+    .name-wrap { margin: 6px 0 8px; }
+    .name1, .name2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 64px;
+      color: #0a1f4d; line-height: 1.05; display: block;
+    }
+    .amp-wrap {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; color: #85c1e9;
+      display: block; margin: 2px 0;
+    }
+
+    .date-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin: 16px 0 12px;
+    }
+    .date-day-label, .date-month {
+      font-size: 8px; letter-spacing: 4px; text-transform: uppercase;
+      font-weight: 600; color: #1a5fb4;
+    }
+    .date-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 300; color: #0c2d6b; line-height: 1;
+    }
+    .date-sep { width: 1px; height: 40px; background: rgba(26,95,180,0.3); }
+
+    .venue-section { margin: 10px 0 10px; }
+    .venue-label {
+      font-size: 7px; letter-spacing: 5px; text-transform: uppercase;
+      font-weight: 600; color: #1a5fb4; margin-bottom: 4px;
+    }
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 600; color: #0a1f4d;
+    }
+    .venue-addr {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic; color: #2a4d7a; margin-top: 2px;
+    }
+    .venue-detail {
+      font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+      color: #2a4d7a; margin-top: 6px; line-height: 2.2;
+    }
+    .venue-detail em { font-style: normal; color: #1a5fb4; font-weight: 600; }
+
+    .directions {
+      margin: 10px 0 10px; padding: 12px 14px;
+      border: 1px solid rgba(26,95,180,0.3); border-radius: 4px;
+      background: rgba(174,214,241,0.22);
+      text-align: left;
+    }
+    .directions-label {
+      font-size: 7px; letter-spacing: 5px; text-transform: uppercase;
+      font-weight: 600; color: #1a5fb4; margin-bottom: 10px; text-align: center;
+    }
+    .directions-step {
+      display: flex; align-items: flex-start; gap: 8px;
+      margin-bottom: 8px;
+    }
+    .directions-step:last-child { margin-bottom: 0; }
+    .step-num {
+      min-width: 18px; height: 18px;
+      background: linear-gradient(135deg, #0c2d6b, #1a5fb4);
+      color: #fff; border-radius: 50%;
+      font-size: 8px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; flex-shrink: 0;
+    }
+    .step-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; color: #0c2d6b; line-height: 1.5;
+    }
+    .step-text em { font-style: normal; font-weight: 600; color: #1a5fb4; }
+
+    .notices {
+      margin: 10px 0 10px; padding: 10px 14px;
+      border: 1px solid rgba(26,95,180,0.4); border-radius: 3px;
+      background: rgba(174,214,241,0.25);
+    }
+    .notice-item {
+      font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 600; color: #0c2d6b;
+    }
+
+    .verse-footer {
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid rgba(26,95,180,0.15);
+    }
+    .verse-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11.5px; font-style: italic; color: #2a4d7a; line-height: 1.8;
+    }
+    .verse-ref {
+      font-size: 7px; letter-spacing: 4px; text-transform: uppercase;
+      color: #1a5fb4; margin-top: 5px;
+    }
+
+    /* ── Print / Save as PDF styles ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      html, body { margin: 0; padding: 0; background: #fff; }
+
+      .pdf-btn-wrap { display: none !important; }
+
+      .page { min-height: 100vh; page-break-after: avoid; }
+
+      /* Print the background photo using the img tag directly */
+      .bg-photo {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        z-index: 0;
+      }
+      .bg-photo img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        max-width: 100%;
+      }
+
+      .card {
+        background: linear-gradient(to bottom, rgba(255,255,255,0.82), rgba(214,234,248,0.78)) !important;
+        border: 2px solid rgba(255,255,255,0.6) !important;
+        box-shadow: none;
+      }
+
+      .name1, .name2 { font-size: 56px; }
+      .date-num { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Background Photo -->
+  <div class="bg-photo">
+    <img src="https://raw.githubusercontent.com/Jkaseke1/wedding-invitation/main/couple.jpg" alt="Joseph and Nyasha"/>
+  </div>
+
+  <div class="content">
+
+    <!-- Save as PDF button -->
+    <div class="pdf-btn-wrap">
+      <button class="pdf-btn" onclick="window.print()">&#8675; &nbsp; Save as PDF</button>
+    </div>
+
+    <!-- Invitation Card -->
+    <div class="card">
+      <div class="top-label">&#9670; &nbsp; Wedding Invitation &nbsp; &#9670;</div>
+      <div class="invite-text">Together with their families, we invite you<br/>to celebrate the marriage of</div>
+      <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
+      <div class="name-wrap">
+        <span class="name1">Joseph</span>
+        <span class="amp-wrap">&amp;</span>
+        <span class="name2">Nyasha</span>
+      </div>
+      <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
+      <div class="date-row">
+        <div class="date-day-label">Thursday</div>
+        <div class="date-sep"></div>
+        <div class="date-num">11</div>
+        <div class="date-sep"></div>
+        <div class="date-month">June 2026</div>
+      </div>
+      <div class="venue-section">
+        <div class="venue-label">Ceremony Venue</div>
+        <div class="venue-name">Mumvuri WeDombo</div>
+        <div class="venue-addr">Hatfield, Harare</div>
+        <div class="venue-detail">Ceremony at &nbsp;<em>12:00 PM</em><br/>Dress Code &nbsp;<em>Modest Apparel</em></div>
+      </div>
+      <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
+      <div class="directions">
+        <div class="directions-label">&#9656; &nbsp; Directions &nbsp; &#9656;</div>
+        <div class="directions-step"><div class="step-num">1</div><div class="step-text">From <em>Harare City Centre</em>, head south on <em>Chiremba Road</em></div></div>
+        <div class="directions-step"><div class="step-num">2</div><div class="step-text">Turn into <em>St Patricks Road</em> and go straight</div></div>
+        <div class="directions-step"><div class="step-num">3</div><div class="step-text">Turn into <em>Twentydales Road</em> and go straight to the end</div></div>
+        <div class="directions-step"><div class="step-num">4</div><div class="step-text">Slide to the left, then take the <em>2nd left turn</em></div></div>
+        <div class="directions-step"><div class="step-num">5</div><div class="step-text">Take the <em>1st right turn</em> and go straight to <em>No. 1 Fern Road</em> — Mumvuri WeDombo</div></div>
+      </div>
+      <div class="notices">
+        <div class="notice-item">Strictly By Invitation</div>
+      </div>
+      <div class="verse-footer">
+        <div class="verse-text">"...I found him whom my soul loveth:<br/>I held him, and would not let him go..."</div>
+        <div class="verse-ref">Song of Solomon 3:4 &nbsp;&middot;&nbsp; KJV</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
