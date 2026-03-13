@@ -130,6 +130,34 @@
       font-family: 'Montserrat', sans-serif;
       cursor: pointer; box-shadow: 0 4px 20px rgba(10,44,107,0.35);
     }
+    .directions {
+      margin: 10px 0 8px; padding: 10px 14px;
+      border: 1px solid rgba(26,95,180,0.3); border-radius: 3px;
+      background: rgba(174,214,241,0.20);
+      text-align: left;
+    }
+    .directions-label {
+      font-size: 7px; letter-spacing: 5px; text-transform: uppercase;
+      font-weight: 600; color: #1a5fb4; margin-bottom: 8px; text-align: center;
+    }
+    .directions-step {
+      display: flex; align-items: flex-start; gap: 8px;
+      margin-bottom: 7px;
+    }
+    .directions-step:last-child { margin-bottom: 0; }
+    .step-num {
+      min-width: 18px; height: 18px;
+      background: linear-gradient(135deg, #0c2d6b, #1a5fb4);
+      color: #fff; border-radius: 50%;
+      font-size: 8px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; flex-shrink: 0;
+    }
+    .step-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; color: #0c2d6b; line-height: 1.5;
+    }
+    .step-text em { font-style: normal; font-weight: 600; color: #1a5fb4; }
     .verse-footer { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(26,95,180,0.15); }
     .verse-text {
       font-family: 'Cormorant Garamond', serif;
@@ -258,6 +286,12 @@
       <div class="venue-detail">Ceremony at &nbsp;<em>12:00 PM</em><br/>Dress Code &nbsp;<em>Modest Apparel</em></div>
     </div>
     <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
+    <div class="directions">
+      <div class="directions-label">&#9656; &nbsp; Directions &nbsp; &#9656;</div>
+      <div class="directions-step"><div class="step-num">1</div><div class="step-text">From <em>Harare City Centre</em>, head south on <em>Masvingo Road</em> (past Charge Office)</div></div>
+      <div class="directions-step"><div class="step-num">2</div><div class="step-text">Turn right onto <em>Chiremba Road</em> — continue for approx. 4&nbsp;km</div></div>
+      <div class="directions-step"><div class="step-num">3</div><div class="step-text">Turn left into <em>Fren Road</em>, Hatfield — Mumvuri WeDombo is along this road</div></div>
+    </div>
     <div class="notices">
       <div class="notice-item">Strictly By Invitation</div>
     </div>
