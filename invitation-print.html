@@ -82,19 +82,27 @@
     }
     .card::before,
     .card::after {
-      content: '❖';
+      content: '';
       position: absolute;
-      font-size: 24px;
-      color: #1a5fb4;
-      opacity: 0.6;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(ellipse at top left, rgba(133,193,233,0.3) 0%, transparent 70%);
+      border-radius: 50% 0 50% 0;
     }
     .card::before {
-      top: 12px;
-      left: 12px;
+      top: 0;
+      left: 0;
+      background: radial-gradient(ellipse at top left, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
+      border-top: 2px solid rgba(133,193,233,0.4);
+      border-left: 2px solid rgba(133,193,233,0.4);
     }
     .card::after {
-      top: 12px;
-      right: 12px;
+      top: 0;
+      right: 0;
+      background: radial-gradient(ellipse at top right, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
+      border-top: 2px solid rgba(133,193,233,0.4);
+      border-right: 2px solid rgba(133,193,233,0.4);
+      border-radius: 0 50% 0 50%;
     }
 
     .top-label {
@@ -204,18 +212,25 @@
     }
     .verse-footer::before,
     .verse-footer::after {
-      content: '❖';
+      content: '';
       position: absolute;
-      font-size: 24px;
-      color: #1a5fb4;
-      opacity: 0.6;
-      bottom: 12px;
+      width: 60px;
+      height: 60px;
+      bottom: 0;
     }
     .verse-footer::before {
-      left: 12px;
+      left: 0;
+      background: radial-gradient(ellipse at bottom left, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
+      border-bottom: 2px solid rgba(133,193,233,0.4);
+      border-left: 2px solid rgba(133,193,233,0.4);
+      border-radius: 0 50% 0 50%;
     }
     .verse-footer::after {
-      right: 12px;
+      right: 0;
+      background: radial-gradient(ellipse at bottom right, rgba(133,193,233,0.25) 0%, rgba(174,214,241,0.15) 50%, transparent 70%);
+      border-bottom: 2px solid rgba(133,193,233,0.4);
+      border-right: 2px solid rgba(133,193,233,0.4);
+      border-radius: 50% 0 50% 0;
     }
     .verse-text {
       font-family: 'Cormorant Garamond', serif;
