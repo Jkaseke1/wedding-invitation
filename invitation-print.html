@@ -82,23 +82,19 @@
     }
     .card::before,
     .card::after {
-      content: '';
+      content: '❖';
       position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 2px solid #1a5fb4;
+      font-size: 24px;
+      color: #1a5fb4;
+      opacity: 0.6;
     }
     .card::before {
-      top: 8px;
-      left: 8px;
-      border-right: none;
-      border-bottom: none;
+      top: 12px;
+      left: 12px;
     }
     .card::after {
-      top: 8px;
-      right: 8px;
-      border-left: none;
-      border-bottom: none;
+      top: 12px;
+      right: 12px;
     }
 
     .top-label {
@@ -208,22 +204,18 @@
     }
     .verse-footer::before,
     .verse-footer::after {
-      content: '';
+      content: '❖';
       position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 2px solid #1a5fb4;
-      bottom: -8px;
+      font-size: 24px;
+      color: #1a5fb4;
+      opacity: 0.6;
+      bottom: 12px;
     }
     .verse-footer::before {
-      left: -24px;
-      border-right: none;
-      border-top: none;
+      left: 12px;
     }
     .verse-footer::after {
-      right: -24px;
-      border-left: none;
-      border-top: none;
+      right: 12px;
     }
     .verse-text {
       font-family: 'Cormorant Garamond', serif;
