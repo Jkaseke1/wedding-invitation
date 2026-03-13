@@ -38,7 +38,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.18);
+      background: rgba(0,0,0,0.35);
     }
 
     .content {
@@ -70,10 +70,10 @@
     }
 
     .card {
-      background: linear-gradient(to bottom, rgba(255,255,255,0.82), rgba(214,234,248,0.78));
+      background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(240,247,255,0.93));
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 2px solid rgba(255,255,255,0.8);
       border-radius: 6px;
       box-shadow: 0 12px 50px rgba(10,50,120,0.4);
       padding: 32px 28px 28px;
@@ -192,6 +192,14 @@
       color: #1a5fb4; margin-top: 5px;
     }
 
+    /* Page 2 - Directions */
+    .page-2 {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      page-break-before: always;
+    }
+
     /* ── Print / Save as PDF styles ── */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -200,7 +208,8 @@
 
       .pdf-btn-wrap { display: none !important; }
 
-      .page { min-height: 100vh; page-break-after: avoid; }
+      .page { min-height: 100vh; page-break-after: always; }
+      .page-2 { min-height: 100vh; page-break-before: always; }
 
       /* Print the background photo using the img tag directly */
       .bg-photo {
@@ -223,8 +232,8 @@
       }
 
       .card {
-        background: linear-gradient(to bottom, rgba(255,255,255,0.82), rgba(214,234,248,0.78)) !important;
-        border: 2px solid rgba(255,255,255,0.6) !important;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.96), rgba(240,247,255,0.94)) !important;
+        border: 2px solid rgba(255,255,255,0.85) !important;
         box-shadow: none;
       }
 
@@ -272,15 +281,6 @@
         <div class="venue-addr">Hatfield, Harare</div>
         <div class="venue-detail">Ceremony at &nbsp;<em>12:00 PM</em><br/>Dress Code &nbsp;<em>Modest Apparel</em></div>
       </div>
-      <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
-      <div class="directions">
-        <div class="directions-label">&#9656; &nbsp; Directions &nbsp; &#9656;</div>
-        <div class="directions-step"><div class="step-num">1</div><div class="step-text">From <em>Harare City Centre</em>, head south on <em>Chiremba Road</em></div></div>
-        <div class="directions-step"><div class="step-num">2</div><div class="step-text">Turn into <em>St Patricks Road</em> and go straight</div></div>
-        <div class="directions-step"><div class="step-num">3</div><div class="step-text">Turn into <em>Twentydales Road</em> and go straight to the end</div></div>
-        <div class="directions-step"><div class="step-num">4</div><div class="step-text">Slide to the left, then take the <em>2nd left turn</em></div></div>
-        <div class="directions-step"><div class="step-num">5</div><div class="step-text">Take the <em>1st right turn</em> and go straight to <em>No. 1 Fern Road</em> — Mumvuri WeDombo</div></div>
-      </div>
       <div class="notices">
         <div class="notice-item">Strictly By Invitation</div>
       </div>
@@ -290,6 +290,32 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Page 2 - Directions -->
+<div class="page-2">
+  <div class="bg-photo">
+    <img src="https://raw.githubusercontent.com/Jkaseke1/wedding-invitation/main/couple.jpg" alt="Joseph and Nyasha"/>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <div class="top-label">&#9656; &nbsp; Getting There &nbsp; &#9656;</div>
+      <div class="directions">
+        <div class="directions-label">Directions to Mumvuri WeDombo</div>
+        <div class="directions-step"><div class="step-num">1</div><div class="step-text">From <em>Harare City Centre</em>, head south on <em>Chiremba Road</em></div></div>
+        <div class="directions-step"><div class="step-num">2</div><div class="step-text">Turn into <em>St Patricks Road</em> and go straight</div></div>
+        <div class="directions-step"><div class="step-num">3</div><div class="step-text">Turn into <em>Twentydales Road</em> and go straight to the end</div></div>
+        <div class="directions-step"><div class="step-num">4</div><div class="step-text">Slide to the left, then take the <em>2nd left turn</em></div></div>
+        <div class="directions-step"><div class="step-num">5</div><div class="step-text">Take the <em>1st right turn</em> and go straight to <em>No. 1 Fern Road</em> — Mumvuri WeDombo</div></div>
+      </div>
+      <div class="divider"><div class="div-line"></div><div class="div-diamond"></div><div class="div-line"></div></div>
+      <div class="venue-section">
+        <div class="venue-name">Mumvuri WeDombo</div>
+        <div class="venue-addr">No. 1 Fern Road, Hatfield, Harare</div>
+      </div>
+    </div>
   </div>
 </div>
 </body>
