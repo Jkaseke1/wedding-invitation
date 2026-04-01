@@ -442,7 +442,7 @@
 </div>
 
 <script>
-  let attVal = 'yes';
+  var attVal = 'yes';
 
   function openModal() {
     document.getElementById('modal').classList.add('open');
@@ -456,55 +456,59 @@
     document.getElementById('rsvp-form').reset();
     selectAtt('yes');
   }
-  document.getElementById('modal').addEventListener('click', e => {
+  document.getElementById('modal').addEventListener('click', function(e) {
     if (e.target === document.getElementById('modal')) closeModal();
   });
 
   function selectAtt(val) {
     attVal = val;
-    const ids = { yes:'opt-yes', maybe:'opt-maybe', no:'opt-no' };
-    const cls = { yes:'sel-yes', maybe:'sel-maybe', no:'sel-no' };
-    Object.keys(ids).forEach(k => {
-      document.getElementById(ids[k]).className = 'att-opt' + (k === val ? ' ' + cls[k] : '');
-    });
-    document.getElementById('att-note').style.display = val === 'maybe' ? 'block' : 'none';
+    var ids = { yes:'opt-yes', maybe:'opt-maybe', no:'opt-no' };
+    var cls = { yes:'sel-yes', maybe:'sel-maybe', no:'sel-no' };
+    for (var key in ids) {
+      if (ids.hasOwnProperty(key)) {
+        var elem = document.getElementById(ids[key]);
+        if (elem) {
+          elem.className = 'att-opt' + (key === val ? ' ' + cls[key] : '');
+        }
+      }
+    }
+    var note = document.getElementById('att-note');
+    if (note) {
+      note.style.display = val === 'maybe' ? 'block' : 'none';
+    }
   }
 
-  async function submitRSVP(e) {
+  function submitRSVP(e) {
     e.preventDefault();
     
-    // Check if already submitted
     if (localStorage.getItem('rsvp_submitted') === 'true') {
       alert('You have already submitted your RSVP. Thank you!');
       return;
     }
     
-    const attLabels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
-    const attendance = attLabels[attVal] || attVal;
+    var attLabels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
+    var attendance = attLabels[attVal] || attVal;
     document.getElementById('hidden-att').value = attendance;
 
-    const form = document.getElementById('rsvp-form');
-    const btn  = form.querySelector('.sub-btn');
+    var form = document.getElementById('rsvp-form');
+    var btn  = form.querySelector('.sub-btn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    const name = document.getElementById('f-name').value;
+    var name = document.getElementById('f-name').value;
 
-    try {
-      const formspreeResp = await fetch('https://formspree.io/f/xaqdkzjn', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-
+    fetch('https://formspree.io/f/xaqdkzjn', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function(formspreeResp) {
       fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, attendance })
-      }).catch(() => {});
+        body: JSON.stringify({ name: name, attendance: attendance })
+      }).catch(function(){});
 
       if (formspreeResp.ok) {
-        // Mark as submitted in localStorage
         localStorage.setItem('rsvp_submitted', 'true');
         localStorage.setItem('rsvp_name', name);
         localStorage.setItem('rsvp_attendance', attendance);
@@ -517,11 +521,11 @@
         btn.disabled = false;
         alert('Something went wrong. Please try again.');
       }
-    } catch(err) {
+    }).catch(function() {
       btn.textContent = 'Send RSVP';
       btn.disabled = false;
       alert('Network error. Please check your connection and try again.');
-    }
+    });
   }
 </script>
 </body>
