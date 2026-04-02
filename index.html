@@ -80,9 +80,7 @@
       overflow-y: auto;
       text-align: center;
       padding: 28px 32px 24px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(214,234,248,0.70) 100%);
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
+      background: linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(214,234,248,0.80) 100%);
       border: 2px solid rgba(174,214,241,0.6);
       border-radius: 4px;
       box-shadow: 0 8px 40px rgba(10,50,120,0.3);
@@ -445,20 +443,33 @@
   var attVal = 'yes';
 
   function openModal() {
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    var modal = document.getElementById('modal');
+    if (modal) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
   function closeModal() {
-    document.getElementById('modal').classList.remove('open');
+    var modal = document.getElementById('modal');
+    if (modal) {
+      modal.classList.remove('open');
+    }
     document.body.style.overflow = '';
-    document.getElementById('success').style.display = 'none';
-    document.getElementById('rsvp-form').style.display = 'block';
-    document.getElementById('rsvp-form').reset();
+    var success = document.getElementById('success');
+    var form = document.getElementById('rsvp-form');
+    if (success) success.style.display = 'none';
+    if (form) {
+      form.style.display = 'block';
+      form.reset();
+    }
     selectAtt('yes');
   }
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === document.getElementById('modal')) closeModal();
-  });
+  var modal = document.getElementById('modal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+  }
 
   function selectAtt(val) {
     attVal = val;
@@ -479,53 +490,75 @@
   }
 
   function submitRSVP(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     
-    if (localStorage.getItem('rsvp_submitted') === 'true') {
-      alert('You have already submitted your RSVP. Thank you!');
-      return;
-    }
+    try {
+      if (localStorage.getItem('rsvp_submitted') === 'true') {
+        alert('You have already submitted your RSVP. Thank you!');
+        return;
+      }
+    } catch(err) {}
     
     var attLabels = { yes: 'Joyfully Accepts', maybe: 'Not Sure Yet', no: 'Regretfully Declines' };
     var attendance = attLabels[attVal] || attVal;
-    document.getElementById('hidden-att').value = attendance;
+    
+    var hiddenAtt = document.getElementById('hidden-att');
+    if (hiddenAtt) hiddenAtt.value = attendance;
 
     var form = document.getElementById('rsvp-form');
-    var btn  = form.querySelector('.sub-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
+    if (!form) return;
+    
+    var btn = form.querySelector('.sub-btn');
+    if (btn) {
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+    }
 
-    var name = document.getElementById('f-name').value;
+    var nameField = document.getElementById('f-name');
+    var name = nameField ? nameField.value : '';
 
-    fetch('https://formspree.io/f/xaqdkzjn', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function(formspreeResp) {
-      fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, attendance: attendance })
-      }).catch(function(){});
+    if (typeof fetch !== 'undefined') {
+      fetch('https://formspree.io/f/xaqdkzjn', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      }).then(function(formspreeResp) {
+        try {
+          fetch('https://script.google.com/macros/s/AKfycby3zmu28zJ55ziHJDqNPoxi_wzdJ2tCLRvskm7VzBrp_t_zjqyb3KCzy9XAH49mEkwGHA/exec', {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name, attendance: attendance })
+          }).catch(function(){});
+        } catch(err) {}
 
-      if (formspreeResp.ok) {
-        localStorage.setItem('rsvp_submitted', 'true');
-        localStorage.setItem('rsvp_name', name);
-        localStorage.setItem('rsvp_attendance', attendance);
-        
-        form.style.display = 'none';
-        document.getElementById('success').style.display = 'block';
-        setTimeout(closeModal, 3400);
-      } else {
-        btn.textContent = 'Send RSVP';
-        btn.disabled = false;
-        alert('Something went wrong. Please try again.');
-      }
-    }).catch(function() {
-      btn.textContent = 'Send RSVP';
-      btn.disabled = false;
-      alert('Network error. Please check your connection and try again.');
-    });
+        if (formspreeResp.ok) {
+          try {
+            localStorage.setItem('rsvp_submitted', 'true');
+            localStorage.setItem('rsvp_name', name);
+            localStorage.setItem('rsvp_attendance', attendance);
+          } catch(err) {}
+          
+          form.style.display = 'none';
+          var success = document.getElementById('success');
+          if (success) success.style.display = 'block';
+          setTimeout(closeModal, 3400);
+        } else {
+          if (btn) {
+            btn.textContent = 'Send RSVP';
+            btn.disabled = false;
+          }
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function() {
+        if (btn) {
+          btn.textContent = 'Send RSVP';
+          btn.disabled = false;
+        }
+        alert('Network error. Please check your connection and try again.');
+      });
+    } else {
+      alert('Your browser does not support this feature. Please try a different browser.');
+    }
   }
 </script>
 </body>
