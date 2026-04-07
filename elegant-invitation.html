@@ -16,7 +16,7 @@
       width: 100%;
       height: 100%;
       font-family: 'Cormorant Garamond', serif;
-      background: #f5f5f5;
+      background: #e8e8e8;
     }
 
     .page {
@@ -27,73 +27,79 @@
       justify-content: center;
       padding: 20px;
       page-break-after: always;
-      background: #f5f5f5;
+      background: #e8e8e8;
     }
 
     .card {
       width: 100%;
-      max-width: 600px;
-      aspect-ratio: 8.5 / 11;
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      max-width: 500px;
+      aspect-ratio: 0.65;
+      background: #2c3e50;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
       overflow: hidden;
     }
 
-    /* Gold Diamond Border */
-    .diamond-border {
+    /* Gold Double Diamond Border */
+    .border-frame {
       position: absolute;
-      inset: 40px;
-      border: 3px solid #d4af37;
-      transform: rotate(45deg);
+      inset: 0;
       pointer-events: none;
     }
 
-    .diamond-border::before {
-      content: '';
+    .diamond-outer {
       position: absolute;
-      inset: 8px;
+      inset: 35px;
+      border: 2px solid #d4af37;
+      transform: rotate(45deg);
+    }
+
+    .diamond-inner {
+      position: absolute;
+      inset: 45px;
       border: 1px solid #d4af37;
-      opacity: 0.5;
+      transform: rotate(45deg);
+      opacity: 0.6;
     }
 
-    /* Floral Decorations */
-    .floral {
+    /* Floral Decorations - Roses */
+    .floral-container {
       position: absolute;
-      opacity: 0.9;
+      inset: 0;
+      pointer-events: none;
     }
 
-    .floral-top-left {
-      top: 60px;
-      left: 50px;
-      width: 180px;
-      height: 180px;
+    .rose {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><style>.petal{fill:none;stroke:%23d4af37;stroke-width:0.8;opacity:0.85;}</style></defs><g transform="translate(50,50)"><circle cx="0" cy="0" r="8" class="petal"/><circle cx="0" cy="0" r="12" class="petal" opacity="0.6"/><ellipse cx="-10" cy="-5" rx="6" ry="10" class="petal"/><ellipse cx="10" cy="-5" rx="6" ry="10" class="petal"/><ellipse cx="-12" cy="5" rx="6" ry="10" class="petal"/><ellipse cx="12" cy="5" rx="6" ry="10" class="petal"/><path d="M -5 15 Q -8 25 -5 35" class="petal"/><path d="M 5 15 Q 8 25 5 35" class="petal"/><path d="M -15 10 L -20 25" class="petal" stroke-width="0.6"/><path d="M 15 10 L 20 25" class="petal" stroke-width="0.6"/></g></svg>') no-repeat center;
+      background-size: contain;
     }
 
-    .floral-top-right {
-      top: 60px;
-      right: 50px;
-      width: 180px;
-      height: 180px;
+    .rose-top-left {
+      top: 40px;
+      left: 35px;
+    }
+
+    .rose-top-right {
+      top: 40px;
+      right: 35px;
       transform: scaleX(-1);
     }
 
-    .floral-bottom-left {
-      bottom: 60px;
-      left: 50px;
-      width: 180px;
-      height: 180px;
+    .rose-bottom-left {
+      bottom: 40px;
+      left: 35px;
       transform: scaleY(-1);
     }
 
-    .floral-bottom-right {
-      bottom: 60px;
-      right: 50px;
-      width: 180px;
-      height: 180px;
+    .rose-bottom-right {
+      bottom: 40px;
+      right: 35px;
       transform: scaleX(-1) scaleY(-1);
     }
 
@@ -103,126 +109,124 @@
       z-index: 2;
       text-align: center;
       color: #ffffff;
-      padding: 60px 40px;
-      max-width: 400px;
+      padding: 50px 40px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .save-the-date .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
+      gap: 15px;
     }
 
     .save-the-date h1 {
-      font-size: 72px;
+      font-size: 68px;
       font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+      letter-spacing: 3px;
       line-height: 1;
+      margin: 0;
     }
 
     .save-the-date .subtitle {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 300;
       font-style: italic;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      margin: 0;
     }
 
     /* Main Invitation */
-    .main-invitation .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
     .together {
-      font-size: 14px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       font-weight: 600;
       color: #d4af37;
+      line-height: 1.6;
     }
 
     .names {
-      font-size: 48px;
+      font-size: 42px;
       font-weight: 400;
-      margin-bottom: 10px;
-      line-height: 1.3;
+      margin: 10px 0;
+      line-height: 1.2;
+      font-style: italic;
     }
 
     .names .ampersand {
-      font-size: 36px;
+      font-size: 28px;
       color: #d4af37;
-      margin: 5px 0;
+      margin: 3px 0;
+      font-style: normal;
     }
 
     .invitation-text {
-      font-size: 14px;
-      line-height: 1.8;
-      margin: 25px 0;
+      font-size: 12px;
+      line-height: 1.7;
+      margin: 15px 0;
       font-style: italic;
-      color: #e8e8e8;
+      color: #d8d8d8;
     }
 
     .date-section {
-      margin: 25px 0;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .date-section .day {
-      font-size: 42px;
-      font-weight: 700;
-      color: #d4af37;
-    }
-
-    .date-section .time {
-      font-size: 14px;
-      margin-top: 8px;
-    }
-
-    .venue-section {
-      margin-top: 25px;
+      margin: 18px 0;
       font-size: 13px;
       line-height: 1.8;
     }
 
-    .venue-section .label {
+    .date-section .day {
+      font-size: 38px;
+      font-weight: 700;
+      color: #d4af37;
+      line-height: 1;
+    }
+
+    .date-section .year {
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .date-section .time {
       font-size: 11px;
+      margin-top: 5px;
+      letter-spacing: 1px;
+    }
+
+    .venue-section {
+      margin-top: 15px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .venue-section .label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #d4af37;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .dress-code {
+      margin-top: 15px;
+      font-size: 11px;
+      line-height: 1.6;
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
+      padding-top: 12px;
+      color: #d8d8d8;
+    }
+
+    .dress-code .label {
+      font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #d4af37;
       margin-bottom: 5px;
       font-weight: 600;
-    }
-
-    .dress-code {
-      margin-top: 20px;
-      font-size: 12px;
-      line-height: 1.8;
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
-      padding-top: 15px;
-      color: #e8e8e8;
-    }
-
-    .dress-code .label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #d4af37;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    /* SVG Floral Pattern */
-    svg {
-      width: 100%;
-      height: 100%;
     }
 
     @media print {
@@ -236,6 +240,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
+        background: white;
       }
 
       .page {
@@ -244,6 +249,7 @@
         margin: 0;
         padding: 0;
         page-break-after: always;
+        background: white;
       }
 
       .card {
@@ -261,75 +267,17 @@
 <!-- PAGE 1: SAVE THE DATE -->
 <div class="page save-the-date">
   <div class="card">
-    <div class="diamond-border"></div>
+    <div class="border-frame">
+      <div class="diamond-outer"></div>
+      <div class="diamond-inner"></div>
+    </div>
     
-    <!-- Floral Decorations -->
-    <svg class="floral floral-top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <!-- Rose flower -->
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <!-- Petals -->
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <!-- Leaves -->
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-top-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-bottom-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
+    <div class="floral-container">
+      <div class="rose rose-top-left"></div>
+      <div class="rose rose-top-right"></div>
+      <div class="rose rose-bottom-left"></div>
+      <div class="rose rose-bottom-right"></div>
+    </div>
 
     <div class="content">
       <h1>SAVE</h1>
@@ -341,72 +289,17 @@
 <!-- PAGE 2: MAIN INVITATION -->
 <div class="page main-invitation">
   <div class="card">
-    <div class="diamond-border"></div>
+    <div class="border-frame">
+      <div class="diamond-outer"></div>
+      <div class="diamond-inner"></div>
+    </div>
     
-    <!-- Floral Decorations -->
-    <svg class="floral floral-top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-top-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-bottom-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
-
-    <svg class="floral floral-bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#d4af37" stroke-width="1.5">
-        <circle cx="100" cy="80" r="15" opacity="0.8"/>
-        <circle cx="100" cy="80" r="12" opacity="0.6"/>
-        <circle cx="100" cy="80" r="8" opacity="0.4"/>
-        <ellipse cx="85" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="115" cy="70" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="80" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <ellipse cx="120" cy="90" rx="8" ry="12" opacity="0.7"/>
-        <path d="M 70 100 Q 60 110 65 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 130 100 Q 140 110 135 125" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 85 130 Q 80 145 95 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-        <path d="M 115 130 Q 120 145 105 155" stroke="#d4af37" fill="none" opacity="0.6"/>
-      </g>
-    </svg>
+    <div class="floral-container">
+      <div class="rose rose-top-left"></div>
+      <div class="rose rose-top-right"></div>
+      <div class="rose rose-bottom-left"></div>
+      <div class="rose rose-bottom-right"></div>
+    </div>
 
     <div class="content">
       <div class="together">Together<br/>With Their Families</div>
@@ -424,8 +317,8 @@
 
       <div class="date-section">
         <div class="day">16</div>
-        <div>JULY 2026</div>
-        <div class="time">AT 9:30 AM IN THE AFTERNOON</div>
+        <div class="year">JULY 2026</div>
+        <div class="time">AT 9:30 AM</div>
       </div>
 
       <div class="venue-section">
@@ -440,8 +333,7 @@
 
       <div class="dress-code">
         <div class="label">Dress Code</div>
-        <div>Modest Apparel<br/>
-        <strong>For Women:</strong> No Trousers, No Mini Skirts</div>
+        <div>Modest Apparel<br/>For Women: No Trousers, No Mini Skirts</div>
       </div>
     </div>
   </div>
