@@ -2,341 +2,503 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="apple-mobile-web-app-capable" content="no"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-  <title>Joseph & Nyasha — Wedding Invitation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph &amp; Nyasha — Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    html, body {
-      width: 100%;
-      height: 100%;
-      font-family: 'Cormorant Garamond', serif;
-      background: #e8e8e8;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;height:100%;background:#c8c8c8;}
+
+    /* ── Page ── */
+    .page{
+      width:210mm; height:297mm;
+      margin:0 auto;
+      position:relative;
+      overflow:hidden;
+      page-break-after:always;
+      background:#2b2d42;
     }
 
-    .page {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      page-break-after: always;
-      background: #e8e8e8;
+    /* ── Shared Floral SVG ── */
+    .florals{position:absolute;inset:0;pointer-events:none;z-index:2;}
+
+    /* ═══════════════════════════════════════
+       PAGE 1 — SAVE THE DATE
+       ═══════════════════════════════════════ */
+
+    /* White hexagon center for page 1 */
+    .hex-white{
+      position:absolute;
+      top:50%;left:50%;
+      width:260px;height:260px;
+      background:#fff;
+      transform:translate(-50%,-50%) rotate(30deg);
+      clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+      z-index:1;
+    }
+    .hex-gold{
+      position:absolute;
+      top:50%;left:50%;
+      width:280px;height:280px;
+      background:transparent;
+      border:2px solid #c9a84c;
+      transform:translate(-50%,-50%) rotate(30deg);
+      clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+      z-index:1;
     }
 
-    .card {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 0.65;
-      background: #2c3e50;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-      overflow: hidden;
+    .save-text{
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      text-align:center;
+      z-index:5;
+      color:#2b2d42;
+    }
+    .save-text .line1{
+      font-family:'Montserrat',sans-serif;
+      font-size:42px;font-weight:700;
+      letter-spacing:8px;
+      text-transform:uppercase;
+      display:block;
+      line-height:1;
+    }
+    .save-text .line2{
+      font-family:'Great Vibes',cursive;
+      font-size:38px;
+      display:block;
+      margin:4px 0;
+      color:#c9a84c;
+    }
+    .save-text .line3{
+      font-family:'Montserrat',sans-serif;
+      font-size:42px;font-weight:700;
+      letter-spacing:8px;
+      text-transform:uppercase;
+      display:block;
+      line-height:1;
     }
 
-    /* Gold Double Diamond Border */
-    .border-frame {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+    /* ═══════════════════════════════════════
+       PAGE 2 — MAIN INVITATION
+       ═══════════════════════════════════════ */
+
+    /* White polygon center for page 2 */
+    .poly-white{
+      position:absolute;
+      top:50%;left:55%;
+      width:380px;height:520px;
+      background:#fff;
+      transform:translate(-50%,-50%);
+      clip-path:polygon(15% 0%,100% 0%,100% 100%,0% 100%,0% 18%);
+      z-index:1;
+    }
+    .poly-gold-outer{
+      position:absolute;
+      top:50%;left:55%;
+      width:400px;height:540px;
+      background:transparent;
+      border:2px solid #c9a84c;
+      transform:translate(-50%,-50%);
+      clip-path:polygon(15% 0%,100% 0%,100% 100%,0% 100%,0% 18%);
+      z-index:1;
+    }
+    .poly-gold-inner{
+      position:absolute;
+      top:50%;left:55%;
+      width:390px;height:530px;
+      background:transparent;
+      border:1.5px solid #c9a84c;
+      transform:translate(-50%,-50%);
+      clip-path:polygon(15% 0%,100% 0%,100% 100%,0% 100%,0% 18%);
+      z-index:1;
+      opacity:0.5;
     }
 
-    .diamond-outer {
-      position: absolute;
-      inset: 35px;
-      border: 2px solid #d4af37;
-      transform: rotate(45deg);
+    .invite-content{
+      position:absolute;
+      top:50%;left:55%;
+      transform:translate(-50%,-50%);
+      text-align:center;
+      z-index:5;
+      color:#2b2d42;
+      width:320px;
+    }
+    .invite-content .together{
+      font-family:'Montserrat',sans-serif;
+      font-size:9px;letter-spacing:3px;
+      text-transform:uppercase;
+      font-weight:600;
+      color:#2b2d42;
+      line-height:1.8;
+      margin-bottom:12px;
+    }
+    .invite-content .groom{
+      font-family:'Great Vibes',cursive;
+      font-size:46px;
+      color:#2b2d42;
+      line-height:1.1;
+      display:block;
+    }
+    .invite-content .amp{
+      font-family:'Cormorant Garamond',serif;
+      font-size:28px;
+      color:#c9a84c;
+      display:block;
+      margin:2px 0;
+    }
+    .invite-content .bride{
+      font-family:'Great Vibes',cursive;
+      font-size:46px;
+      color:#2b2d42;
+      line-height:1.1;
+      display:block;
+    }
+    .invite-content .request{
+      font-family:'Cormorant Garamond',serif;
+      font-size:11px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      line-height:1.8;
+      margin:16px 0;
+      color:#555;
+    }
+    .invite-content .date-row{
+      display:flex;align-items:center;justify-content:center;
+      gap:10px;margin:14px 0 6px;
+    }
+    .invite-content .date-row .day-name{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;font-weight:600;
+      letter-spacing:2px;text-transform:uppercase;
+      color:#2b2d42;
+    }
+    .invite-content .date-row .date-num{
+      font-family:'Cormorant Garamond',serif;
+      font-size:48px;font-weight:300;
+      color:#2b2d42;line-height:1;
+      border-left:1px solid #c9a84c;
+      border-right:1px solid #c9a84c;
+      padding:0 14px;
+    }
+    .invite-content .date-row .month-year{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;font-weight:600;
+      letter-spacing:2px;text-transform:uppercase;
+      color:#2b2d42;
+    }
+    .invite-content .time-text{
+      font-family:'Cormorant Garamond',serif;
+      font-size:10px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:#888;
+      margin:6px 0 14px;
+    }
+    .invite-content .venue{
+      font-family:'Cormorant Garamond',serif;
+      font-size:12px;
+      line-height:1.6;
+      color:#2b2d42;
+      margin-bottom:10px;
+    }
+    .invite-content .venue .vlabel{
+      font-family:'Montserrat',sans-serif;
+      font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;
+      font-weight:700;
+      color:#c9a84c;
+      display:block;
+      margin-bottom:3px;
+    }
+    .invite-content .dress{
+      font-family:'Cormorant Garamond',serif;
+      font-size:11px;
+      line-height:1.6;
+      color:#2b2d42;
+      border-top:1px solid #c9a84c;
+      padding-top:10px;
+      margin-top:10px;
+    }
+    .invite-content .dress .dlabel{
+      font-family:'Montserrat',sans-serif;
+      font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;
+      font-weight:700;
+      color:#c9a84c;
+      display:block;
+      margin-bottom:3px;
+    }
+    .invite-content .verse{
+      font-family:'Cormorant Garamond',serif;
+      font-size:11px;
+      font-style:italic;
+      line-height:1.6;
+      color:#555;
+      margin-top:14px;
+      border-top:1px solid rgba(201,168,76,0.3);
+      padding-top:10px;
+    }
+    .invite-content .verse .vref{
+      font-family:'Montserrat',sans-serif;
+      font-size:8px;letter-spacing:2px;
+      text-transform:uppercase;
+      font-weight:600;
+      font-style:normal;
+      color:#c9a84c;
+      display:block;
+      margin-top:4px;
     }
 
-    .diamond-inner {
-      position: absolute;
-      inset: 45px;
-      border: 1px solid #d4af37;
-      transform: rotate(45deg);
-      opacity: 0.6;
+    /* ══════════ Print ══════════ */
+    @media print{
+      @page{size:A4;margin:0;}
+      html,body{background:#fff;width:210mm;height:297mm;}
+      .page{margin:0;box-shadow:none;width:210mm;height:297mm;}
     }
 
-    /* Floral Decorations - Roses */
-    .floral-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .rose {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><style>.petal{fill:none;stroke:%23d4af37;stroke-width:0.8;opacity:0.85;}</style></defs><g transform="translate(50,50)"><circle cx="0" cy="0" r="8" class="petal"/><circle cx="0" cy="0" r="12" class="petal" opacity="0.6"/><ellipse cx="-10" cy="-5" rx="6" ry="10" class="petal"/><ellipse cx="10" cy="-5" rx="6" ry="10" class="petal"/><ellipse cx="-12" cy="5" rx="6" ry="10" class="petal"/><ellipse cx="12" cy="5" rx="6" ry="10" class="petal"/><path d="M -5 15 Q -8 25 -5 35" class="petal"/><path d="M 5 15 Q 8 25 5 35" class="petal"/><path d="M -15 10 L -20 25" class="petal" stroke-width="0.6"/><path d="M 15 10 L 20 25" class="petal" stroke-width="0.6"/></g></svg>') no-repeat center;
-      background-size: contain;
-    }
-
-    .rose-top-left {
-      top: 40px;
-      left: 35px;
-    }
-
-    .rose-top-right {
-      top: 40px;
-      right: 35px;
-      transform: scaleX(-1);
-    }
-
-    .rose-bottom-left {
-      bottom: 40px;
-      left: 35px;
-      transform: scaleY(-1);
-    }
-
-    .rose-bottom-right {
-      bottom: 40px;
-      right: 35px;
-      transform: scaleX(-1) scaleY(-1);
-    }
-
-    /* Content */
-    .content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: #ffffff;
-      padding: 50px 40px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .save-the-date .content {
-      gap: 15px;
-    }
-
-    .save-the-date h1 {
-      font-size: 68px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      line-height: 1;
-      margin: 0;
-    }
-
-    .save-the-date .subtitle {
-      font-size: 32px;
-      font-weight: 300;
-      font-style: italic;
-      letter-spacing: 2px;
-      margin: 0;
-    }
-
-    /* Main Invitation */
-    .together {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      font-weight: 600;
-      color: #d4af37;
-      line-height: 1.6;
-    }
-
-    .names {
-      font-size: 42px;
-      font-weight: 400;
-      margin: 10px 0;
-      line-height: 1.2;
-      font-style: italic;
-    }
-
-    .names .ampersand {
-      font-size: 28px;
-      color: #d4af37;
-      margin: 3px 0;
-      font-style: normal;
-    }
-
-    .invitation-text {
-      font-size: 12px;
-      line-height: 1.7;
-      margin: 15px 0;
-      font-style: italic;
-      color: #d8d8d8;
-    }
-
-    .date-section {
-      margin: 18px 0;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .date-section .day {
-      font-size: 38px;
-      font-weight: 700;
-      color: #d4af37;
-      line-height: 1;
-    }
-
-    .date-section .year {
-      font-size: 13px;
-      margin-top: 2px;
-    }
-
-    .date-section .time {
-      font-size: 11px;
-      margin-top: 5px;
-      letter-spacing: 1px;
-    }
-
-    .venue-section {
-      margin-top: 15px;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .venue-section .label {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #d4af37;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    .dress-code {
-      margin-top: 15px;
-      font-size: 11px;
-      line-height: 1.6;
-      border-top: 1px solid rgba(212, 175, 55, 0.4);
-      padding-top: 12px;
-      color: #d8d8d8;
-    }
-
-    .dress-code .label {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #d4af37;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    @media print {
-      @page {
-        size: A4;
-        margin: 0;
-      }
-      
-      html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background: white;
-      }
-
-      .page {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        page-break-after: always;
-        background: white;
-      }
-
-      .card {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        aspect-ratio: auto;
-        box-shadow: none;
-      }
+    @media screen{
+      .page{box-shadow:0 10px 50px rgba(0,0,0,0.3);margin:20px auto;}
     }
   </style>
 </head>
 <body>
 
-<!-- PAGE 1: SAVE THE DATE -->
-<div class="page save-the-date">
-  <div class="card">
-    <div class="border-frame">
-      <div class="diamond-outer"></div>
-      <div class="diamond-inner"></div>
-    </div>
-    
-    <div class="floral-container">
-      <div class="rose rose-top-left"></div>
-      <div class="rose rose-top-right"></div>
-      <div class="rose rose-bottom-left"></div>
-      <div class="rose rose-bottom-right"></div>
-    </div>
+<!-- ═══════════ PAGE 1: SAVE THE DATE ═══════════ -->
+<div class="page">
 
-    <div class="content">
-      <h1>SAVE</h1>
-      <div class="subtitle">the DATE</div>
-    </div>
+  <div class="hex-gold"></div>
+  <div class="hex-white"></div>
+
+  <div class="save-text">
+    <span class="line1">SAVE</span>
+    <span class="line2">the</span>
+    <span class="line3">DATE</span>
   </div>
+
+  <!-- Floral decorations Page 1 — top-right cluster + bottom-left cluster -->
+  <svg class="florals" viewBox="0 0 595 842" xmlns="http://www.w3.org/2000/svg">
+    <!-- ── Top-right rose cluster ── -->
+    <g transform="translate(370,80)" fill="none" stroke="#c9a84c" stroke-width="1.2">
+      <!-- Large rose -->
+      <circle cx="50" cy="50" r="18"/>
+      <circle cx="50" cy="50" r="14" opacity="0.7"/>
+      <circle cx="50" cy="50" r="9" opacity="0.5"/>
+      <ellipse cx="35" cy="38" rx="10" ry="16" transform="rotate(-15,35,38)"/>
+      <ellipse cx="65" cy="38" rx="10" ry="16" transform="rotate(15,65,38)"/>
+      <ellipse cx="30" cy="55" rx="10" ry="14" transform="rotate(-30,30,55)"/>
+      <ellipse cx="70" cy="55" rx="10" ry="14" transform="rotate(30,70,55)"/>
+      <ellipse cx="50" cy="72" rx="12" ry="10"/>
+      <ellipse cx="38" cy="68" rx="10" ry="14" transform="rotate(20,38,68)"/>
+      <ellipse cx="62" cy="68" rx="10" ry="14" transform="rotate(-20,62,68)"/>
+      <!-- Smaller rose -->
+      <circle cx="110" cy="30" r="12"/>
+      <circle cx="110" cy="30" r="8" opacity="0.6"/>
+      <ellipse cx="100" cy="22" rx="7" ry="11" transform="rotate(-15,100,22)"/>
+      <ellipse cx="120" cy="22" rx="7" ry="11" transform="rotate(15,120,22)"/>
+      <ellipse cx="100" cy="38" rx="7" ry="10"/>
+      <ellipse cx="120" cy="38" rx="7" ry="10"/>
+      <!-- Small bud -->
+      <circle cx="140" cy="65" r="8"/>
+      <circle cx="140" cy="65" r="5" opacity="0.5"/>
+      <ellipse cx="135" cy="58" rx="5" ry="8"/>
+      <ellipse cx="145" cy="58" rx="5" ry="8"/>
+      <!-- Leaves -->
+      <path d="M 80 80 Q 100 120 80 160" stroke-width="1"/>
+      <path d="M 80 100 Q 60 95 55 110" stroke-width="0.8"/>
+      <path d="M 55 110 Q 70 105 80 115" stroke-width="0.8"/>
+      <path d="M 80 130 Q 95 125 100 140" stroke-width="0.8"/>
+      <path d="M 100 140 Q 85 135 80 145" stroke-width="0.8"/>
+      <path d="M 130 75 Q 145 100 130 130" stroke-width="0.8"/>
+      <path d="M 130 90 Q 115 88 112 100" stroke-width="0.7"/>
+      <path d="M 112 100 Q 125 95 130 105" stroke-width="0.7"/>
+      <path d="M 130 110 Q 145 108 148 118" stroke-width="0.7"/>
+      <path d="M 148 118 Q 138 113 130 120" stroke-width="0.7"/>
+      <!-- Stems with leaves going down-right -->
+      <path d="M 60 70 Q 40 100 30 140" stroke-width="0.8"/>
+      <path d="M 40 100 Q 30 95 25 105" stroke-width="0.7"/>
+      <path d="M 25 105 Q 36 100 40 110" stroke-width="0.7"/>
+      <!-- Long leaf fronds -->
+      <path d="M 50 85 Q 20 130 10 180" stroke-width="0.8"/>
+      <path d="M 10 130 Q 5 125 0 135" stroke-width="0.6"/>
+      <path d="M 0 135 Q 8 130 12 140" stroke-width="0.6"/>
+      <path d="M 10 155 Q 0 152 -3 162" stroke-width="0.6"/>
+      <path d="M -3 162 Q 7 157 10 168" stroke-width="0.6"/>
+    </g>
+
+    <!-- ── Bottom-left rose cluster ── -->
+    <g transform="translate(30,560)" fill="none" stroke="#c9a84c" stroke-width="1.2">
+      <!-- Large rose -->
+      <circle cx="80" cy="80" r="20"/>
+      <circle cx="80" cy="80" r="15" opacity="0.7"/>
+      <circle cx="80" cy="80" r="10" opacity="0.5"/>
+      <ellipse cx="63" cy="68" rx="11" ry="17" transform="rotate(-15,63,68)"/>
+      <ellipse cx="97" cy="68" rx="11" ry="17" transform="rotate(15,97,68)"/>
+      <ellipse cx="58" cy="88" rx="11" ry="15" transform="rotate(-25,58,88)"/>
+      <ellipse cx="102" cy="88" rx="11" ry="15" transform="rotate(25,102,88)"/>
+      <ellipse cx="80" cy="102" rx="14" ry="11"/>
+      <ellipse cx="68" cy="98" rx="11" ry="15" transform="rotate(20,68,98)"/>
+      <ellipse cx="92" cy="98" rx="11" ry="15" transform="rotate(-20,92,98)"/>
+      <!-- Smaller rose -->
+      <circle cx="20" cy="110" r="12"/>
+      <circle cx="20" cy="110" r="8" opacity="0.6"/>
+      <ellipse cx="10" cy="103" rx="7" ry="11"/>
+      <ellipse cx="30" cy="103" rx="7" ry="11"/>
+      <ellipse cx="12" cy="118" rx="7" ry="10"/>
+      <ellipse cx="28" cy="118" rx="7" ry="10"/>
+      <!-- Small bud -->
+      <circle cx="130" cy="45" r="8"/>
+      <circle cx="130" cy="45" r="5" opacity="0.5"/>
+      <ellipse cx="125" cy="38" rx="5" ry="8"/>
+      <ellipse cx="135" cy="38" rx="5" ry="8"/>
+      <!-- Leaves going up-left -->
+      <path d="M 60 65 Q 40 30 50 -10" stroke-width="1"/>
+      <path d="M 50 40 Q 38 38 35 48" stroke-width="0.8"/>
+      <path d="M 35 48 Q 46 42 50 52" stroke-width="0.8"/>
+      <path d="M 50 20 Q 62 18 65 28" stroke-width="0.8"/>
+      <path d="M 65 28 Q 54 22 50 32" stroke-width="0.8"/>
+      <path d="M 100 65 Q 115 35 110 0" stroke-width="0.8"/>
+      <path d="M 110 40 Q 122 38 125 48" stroke-width="0.7"/>
+      <path d="M 125 48 Q 114 42 110 52" stroke-width="0.7"/>
+      <path d="M 110 20 Q 98 18 95 28" stroke-width="0.7"/>
+      <path d="M 95 28 Q 106 22 110 32" stroke-width="0.7"/>
+      <!-- Leaf fronds right -->
+      <path d="M 110 90 Q 140 70 170 80" stroke-width="0.8"/>
+      <path d="M 140 75 Q 143 65 152 63" stroke-width="0.6"/>
+      <path d="M 152 63 Q 146 72 150 80" stroke-width="0.6"/>
+    </g>
+  </svg>
 </div>
 
-<!-- PAGE 2: MAIN INVITATION -->
-<div class="page main-invitation">
-  <div class="card">
-    <div class="border-frame">
-      <div class="diamond-outer"></div>
-      <div class="diamond-inner"></div>
+<!-- ═══════════ PAGE 2: MAIN INVITATION ═══════════ -->
+<div class="page">
+
+  <div class="poly-gold-outer"></div>
+  <div class="poly-gold-inner"></div>
+  <div class="poly-white"></div>
+
+  <div class="invite-content">
+    <div class="together">Together<br/>With Their Families</div>
+
+    <span class="groom">Joseph Kaseke</span>
+    <span class="amp">&amp;</span>
+    <span class="bride">Nyasha Mupariwa</span>
+
+    <div class="request">
+      Request the pleasure of your company<br/>
+      at wedding ceremony of their wedding
     </div>
-    
-    <div class="floral-container">
-      <div class="rose rose-top-left"></div>
-      <div class="rose rose-top-right"></div>
-      <div class="rose rose-bottom-left"></div>
-      <div class="rose rose-bottom-right"></div>
+
+    <div class="date-row">
+      <span class="day-name">Saturday</span>
+      <span class="date-num">16</span>
+      <span class="month-year">July<br/>2026</span>
+    </div>
+    <div class="time-text">at nine thirty in the morning</div>
+
+    <div class="venue">
+      <span class="vlabel">Ceremony</span>
+      Harare Christian Fellowship<br/>Meyrick Park, Harare
     </div>
 
-    <div class="content">
-      <div class="together">Together<br/>With Their Families</div>
-      
-      <div class="names">
-        Joseph Kaseke
-        <div class="ampersand">&</div>
-        Nyasha Mupariwa
-      </div>
+    <div class="venue">
+      <span class="vlabel">Reception</span>
+      Mundo Eleven, Hatfield, Harare<br/>2:00 PM &ndash; 5:00 PM
+    </div>
 
-      <div class="invitation-text">
-        Request the pleasure of your company<br/>
-        at the wedding ceremony of their wedding
-      </div>
+    <div class="dress">
+      <span class="dlabel">Dress Code</span>
+      Modest Apparel<br/>
+      For Women: No Trousers, No Mini Skirts
+    </div>
 
-      <div class="date-section">
-        <div class="day">16</div>
-        <div class="year">JULY 2026</div>
-        <div class="time">AT 9:30 AM</div>
-      </div>
-
-      <div class="venue-section">
-        <div class="label">Ceremony Venue</div>
-        <div>Harare Christian Fellowship<br/>Meyrick Park, Harare</div>
-      </div>
-
-      <div class="venue-section">
-        <div class="label">Reception Venue</div>
-        <div>Mundo Eleven<br/>Hatfield, Harare<br/>2:00 PM - 5:00 PM</div>
-      </div>
-
-      <div class="dress-code">
-        <div class="label">Dress Code</div>
-        <div>Modest Apparel<br/>For Women: No Trousers, No Mini Skirts</div>
-      </div>
+    <div class="verse">
+      &ldquo;Who can find a virtuous woman?<br/>
+      for her price is far above rubies.&rdquo;
+      <span class="vref">Proverbs 31:10 KJV</span>
     </div>
   </div>
+
+  <!-- Floral decorations Page 2 — top-right + bottom-right clusters -->
+  <svg class="florals" viewBox="0 0 595 842" xmlns="http://www.w3.org/2000/svg">
+    <!-- ── Top-right rose cluster ── -->
+    <g transform="translate(380,30)" fill="none" stroke="#c9a84c" stroke-width="1.2">
+      <circle cx="50" cy="60" r="20"/>
+      <circle cx="50" cy="60" r="15" opacity="0.7"/>
+      <circle cx="50" cy="60" r="10" opacity="0.5"/>
+      <ellipse cx="34" cy="48" rx="11" ry="17" transform="rotate(-15,34,48)"/>
+      <ellipse cx="66" cy="48" rx="11" ry="17" transform="rotate(15,66,48)"/>
+      <ellipse cx="28" cy="65" rx="11" ry="15" transform="rotate(-25,28,65)"/>
+      <ellipse cx="72" cy="65" rx="11" ry="15" transform="rotate(25,72,65)"/>
+      <ellipse cx="50" cy="82" rx="14" ry="11"/>
+      <ellipse cx="38" cy="78" rx="11" ry="15" transform="rotate(20,38,78)"/>
+      <ellipse cx="62" cy="78" rx="11" ry="15" transform="rotate(-20,62,78)"/>
+      <!-- Small rose -->
+      <circle cx="110" cy="40" r="11"/>
+      <circle cx="110" cy="40" r="7" opacity="0.6"/>
+      <ellipse cx="102" cy="33" rx="6" ry="10"/>
+      <ellipse cx="118" cy="33" rx="6" ry="10"/>
+      <ellipse cx="102" cy="47" rx="6" ry="9"/>
+      <ellipse cx="118" cy="47" rx="6" ry="9"/>
+      <!-- Bud -->
+      <circle cx="135" cy="75" r="7"/>
+      <circle cx="135" cy="75" r="4" opacity="0.5"/>
+      <ellipse cx="130" cy="69" rx="5" ry="7"/>
+      <ellipse cx="140" cy="69" rx="5" ry="7"/>
+      <!-- Leaves -->
+      <path d="M 50 90 Q 40 130 55 170" stroke-width="1"/>
+      <path d="M 45 120 Q 32 117 30 128" stroke-width="0.8"/>
+      <path d="M 30 128 Q 40 123 45 132" stroke-width="0.8"/>
+      <path d="M 50 145 Q 62 142 65 152" stroke-width="0.8"/>
+      <path d="M 65 152 Q 54 147 50 158" stroke-width="0.8"/>
+      <path d="M 30 75 Q 10 110 15 160" stroke-width="0.8"/>
+      <path d="M 15 110 Q 5 107 2 118" stroke-width="0.7"/>
+      <path d="M 2 118 Q 12 113 15 122" stroke-width="0.7"/>
+      <path d="M 15 140 Q 25 137 28 148" stroke-width="0.7"/>
+      <path d="M 28 148 Q 18 143 15 152" stroke-width="0.7"/>
+    </g>
+
+    <!-- ── Bottom-right rose cluster ── -->
+    <g transform="translate(340,600)" fill="none" stroke="#c9a84c" stroke-width="1.2">
+      <circle cx="80" cy="80" r="22"/>
+      <circle cx="80" cy="80" r="16" opacity="0.7"/>
+      <circle cx="80" cy="80" r="11" opacity="0.5"/>
+      <ellipse cx="62" cy="66" rx="12" ry="18" transform="rotate(-15,62,66)"/>
+      <ellipse cx="98" cy="66" rx="12" ry="18" transform="rotate(15,98,66)"/>
+      <ellipse cx="56" cy="85" rx="12" ry="16" transform="rotate(-25,56,85)"/>
+      <ellipse cx="104" cy="85" rx="12" ry="16" transform="rotate(25,104,85)"/>
+      <ellipse cx="80" cy="104" rx="15" ry="12"/>
+      <ellipse cx="66" cy="100" rx="12" ry="16" transform="rotate(20,66,100)"/>
+      <ellipse cx="94" cy="100" rx="12" ry="16" transform="rotate(-20,94,100)"/>
+      <!-- Small rose -->
+      <circle cx="25" cy="55" r="12"/>
+      <circle cx="25" cy="55" r="8" opacity="0.6"/>
+      <ellipse cx="16" cy="47" rx="7" ry="11"/>
+      <ellipse cx="34" cy="47" rx="7" ry="11"/>
+      <ellipse cx="16" cy="63" rx="7" ry="10"/>
+      <ellipse cx="34" cy="63" rx="7" ry="10"/>
+      <!-- Bud -->
+      <circle cx="130" cy="50" r="8"/>
+      <circle cx="130" cy="50" r="5" opacity="0.5"/>
+      <ellipse cx="125" cy="43" rx="5" ry="8"/>
+      <ellipse cx="135" cy="43" rx="5" ry="8"/>
+      <!-- Leaves going up -->
+      <path d="M 60 60 Q 45 25 55 -15" stroke-width="1"/>
+      <path d="M 50 30 Q 38 27 35 38" stroke-width="0.8"/>
+      <path d="M 35 38 Q 46 33 50 42" stroke-width="0.8"/>
+      <path d="M 55 8 Q 67 5 70 16" stroke-width="0.8"/>
+      <path d="M 70 16 Q 59 10 55 20" stroke-width="0.8"/>
+      <path d="M 105 60 Q 118 30 112 -10" stroke-width="0.8"/>
+      <path d="M 115 30 Q 128 28 130 38" stroke-width="0.7"/>
+      <path d="M 130 38 Q 120 33 115 42" stroke-width="0.7"/>
+      <path d="M 112 8 Q 100 5 97 16" stroke-width="0.7"/>
+      <path d="M 97 16 Q 108 10 112 20" stroke-width="0.7"/>
+      <!-- Leaves right -->
+      <path d="M 110 95 Q 140 80 165 90" stroke-width="0.8"/>
+      <path d="M 135 85 Q 138 75 147 73" stroke-width="0.6"/>
+      <path d="M 147 73 Q 142 82 145 88" stroke-width="0.6"/>
+    </g>
+  </svg>
 </div>
 
 </body>
