@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="theme-color" content="#1a5fb4"/>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
@@ -31,7 +33,10 @@
       width: 100%; height: 100%;
       font-family: 'Montserrat', sans-serif;
       background: #ffffff;
-      overflow: hidden; /* NO scroll on main page */
+      overflow: hidden;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: pan-y;
     }
 
     /* ── FULL SCREEN PHOTO BACKGROUND ── */
@@ -79,7 +84,8 @@
     .card {
       width: min(96vw, 500px);
       max-height: 98vh;
-      overflow: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       text-align: center;
       padding: 18px 28px 16px;
       background: linear-gradient(160deg, rgba(255,255,255,0.92) 0%, rgba(214,234,248,0.88) 60%, rgba(174,214,241,0.85) 100%);
@@ -369,11 +375,11 @@
 
     <!-- Date -->
     <div class="date-row">
-      <div class="date-day-label">Saturday</div>
+      <div class="date-day-label">Thursday</div>
       <div class="date-sep"></div>
-      <div class="date-num">16</div>
+      <div class="date-num">11</div>
       <div class="date-sep"></div>
-      <div class="date-month">July 2026</div>
+      <div class="date-month">June 2026</div>
     </div>
 
     <!-- Venue -->
@@ -384,7 +390,8 @@
       <div class="venue-detail">
         Ceremony at &nbsp;<em>10:30 AM</em><br/>
         Reception at &nbsp;<em>1:30 PM</em><br/>
-        Dress Code &nbsp;<em>All Shades of Blue</em><br/>
+        Dress Code &nbsp;<em>Modest Apparel</em><br/>
+        <em>All Shades of Blue</em><br/>
         <em>Ladies: No Mini Skirts, No Trousers</em>
       </div>
     </div>
